@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+  <title>Muse</title>
+</head>
+  <body>
+  <style>
+    .jumbotron {
+    height: 100vh;
+    margin-bottom: 0px;
+    }
+    .content-holder {
+    position: absolute;
+    left: 50%!important;
+    z-index: 10;
+    text-align: center;
+    top: 50%!important;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    padding: 50px
+    }
+    
+    #outro{
+        background-image: url("<%= gif.image_original_url%>");
+        background-repeat:no-repeat;
+        background-size:cover;
+        background-position:center;
+    }
+    #intro{
+        background-image:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("https://wallpaperaccess.com/full/2616635.jpg");
+        background-repeat:no-repeat;
+        background-size:cover;
+        background-position:center;
+    }
+  </style>
+    <div id="intro" class="jumbotron jumbotron-fluid bg-dark text-center text-white position-relative" >
+
+        <div class="content-holder">
+            <img class="border border-success rounded-circle p-3 m-3 w-50 h-50" src="/Muse.jpg">
+            <div class = "card p-3 text-dark">
+            <p class= m-3>With Muse access the latest reviews for your favorite songs from Spotify users everywhere. Tap the button to link your account.</p>
+            <div class="container">
+                <div id="login">
+                  <button id="login" class="btn btn-success badge-pill p-3">Log in with Spotify</button>
+                </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+    <div id="loader"></div>
+    <div id="outro" class="jumbotron jumbotron-fluid bg-dark text-center text-white position-relative" >
+
+        <marquee behavior="alternate" BGCOLOR=Green><%= q.content%></marquee>
+
+        <div class="card p-4 bg-light text-dark content-holder" >
+            <h2 class="text-center p-3">Successful Login!</h2> 
+            <p class= "m-3">You have successfully logged in with spotify. Your account is now linked with this website!</p>
+            <div class="container">
+                <form action="/home">
+                  <button class="btn btn-success badge-pill p-3">Continue to Website</button>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <script src="/client.js"></script>
+
+    <script> $("#outro").hide(); $("#loader").hide();</script>
+
+
+  <!-- Note to self: removed form elements & replaced login id-->
+
+</body>
+</html>

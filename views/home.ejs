@@ -1,0 +1,127 @@
+<%- include('partials/header.ejs')  %>
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <div class="card border-0">
+                <div class="d-flex justify-content-center">
+                    <img src="<%= data.images[0].url %>" alt="profile picture" class="border border-2 rounded-circle p-3 m-3">
+                </div>
+                <h3> <%= data.display_name %> </h3>
+                <div class="card-body">
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class=" nav-link active text-dark" id="song-tab" data-toggle="tab" href="#song" role="tab" aria-controls="song" aria-selected="true">My Songs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" id="album-tab" data-toggle="tab" href="#album" role="tab" aria-controls="album" aria-selected="false">My Albums</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">My Posts</a>
+                </li>
+            </ul>
+            <br>
+              <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="song" role="tabpanel" aria-labelledby="song-tab">
+                    <% for (song of songs) { %>
+                        <div class="card track-card bg-light">
+                            <div class="row align-items-center">
+                              <div class="col-3">
+                                <img src="<%=song.track.album.images[0].url%>" class="card img-fluid">
+                              </div>
+                              <div class="col p-3 m-3">
+                                <h4><%=song.track.name%></h4>
+                                <small><%=song.track.artists[0].name%></small>
+                                <br>
+                              </div>
+                            </div>
+                            <a href="<%=song.track.external_urls.spotify%>"
+                            class="stretched-link" target="_blank"></a>
+                        </div>
+                    <br>
+                    <% } %>
+                    <br>
+                </div>
+                <div class="tab-pane fade" id="album" role="tabpanel" aria-labelledby="album-tab">
+                  <% for (alb of albums) { %>
+                        <div class="card album-card bg-light">
+                            <div class="row align-items-center">
+                                <div class="col-3">
+                                    <img src="<%= alb.album.images[0].url%> " class="card img-fluid">
+                                </div>
+                                <div class="col p-3 m-3">
+                                    <h4><%=alb.album.name%></h4>                                   <small><%=alb.album.artists[0].name%></small>
+                                </div>
+                            </div>
+                            <a href="<%=alb.album.external_urls.spotify%>"
+                            class="stretched-link" target="_blank"></a>
+                        </div>
+                        <div class="card">
+                            <button class="btn btn-success btn-block" type="button" data-toggle="collapse" data-target="#<%=alb.album.name%>" aria-expanded="false" aria-controls="<%=alb.album.name%>">Show Tracks</button>
+                            <div class="row">
+                              <div class="col">
+                                  <div class="collapse multi-collapse" id="<%=alb.album.name%>">
+                                      <div>
+                                          <% for (i of alb.album.tracks.items) { %>
+                                              <div class="card track-card p-3">
+                                                <div class="container">
+                                                  <div class="row align-items-center">
+                                                    <div class="col-2">
+                                                      <%=i.track_number%>
+                                                    </div>
+                                                    <div class="col">
+                                                      <b><%=i.name%> </b> <br>
+                                                      <small><%=i.artists[0].name%></small>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                  <a href="<%=i.external_urls.spotify%>"
+                                                  class="stretched-link" target="_blank"></a>
+                                              </div>
+                                          <% } %>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                        <br>
+                  <% } %>
+                  <br>
+                </div>
+                <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                    <% for (i of posts) { %>
+                      <div class="card track-card bg-light">
+                            <div class="row align-items-center">
+                              <div class="col p-3 m-3">
+                                <h5 class="card-title"><%= i.title %></h5>
+                                <small>Created: <%= i.dateISO%></small>
+                                <br>
+                              </div>
+                            </div>
+                            <a href="/forum/post?postID=<%=i.postID%>" class="stretched-link"></a>
+                      </div>
+
+                      <br>
+
+                      <div class="container text-center">
+                        <a href="/forum/post/edit?postID=<%=i.postID%>" class="btn btn-secondary badge-pill p-3"> Edit </a>
+                       <a href="/forum/post/delete?postID=<%=i.postID%>" class="btn btn-danger badge-pill p-3"> Delete </a>
+                      </div>
+
+                      <br>
+
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer.ejs')  %>

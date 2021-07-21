@@ -1,0 +1,24 @@
+<%- include('partials/header.ejs')  %>
+
+  <div class="container w-75 m-auto" id="song" role="tabpanel" aria-labelledby="song-tab">
+  <br>
+    <% for (song of songs) { %>
+        <div class="card track-card">
+            <div class="bg-light row align-items-center">
+              <div class="col-3">
+                <img src="<%=song.track.album.images[0].url%>" class="card img-fluid">
+              </div>
+              <div class="col p-3 m-3">
+                <h4><%=song.track.name%></h4>
+                <small><%=song.track.artists[0].name%></small>
+                <br>
+              </div>
+            </div>
+            <a href="<%=song.track.external_urls.spotify%>"
+            class="stretched-link" target="_blank"></a>
+        </div>
+    <br>
+    <% } %>
+    <br>
+</div>
+<%- include('partials/footer.ejs')  %>

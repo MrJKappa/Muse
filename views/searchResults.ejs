@@ -1,0 +1,31 @@
+<%- include('partials/header.ejs')  %>
+    
+    <h2 class = "text-center"><br>Search Results for:  <%=term%> </h2>
+    <br>
+
+    <div class="container w-75 m-auto" id="song" role="tabpanel" aria-labelledby="song-tab">
+        <% for (song of songs) { %>
+            <div class="card track-card bg-light">
+                <div class="row align-items-center">
+                  <div class="col-3">
+                    <img src="<%=song.album.images[0].url%>" class="card img-fluid">
+                  </div>
+                  <div class="col p-3 m-3">
+                    <h3><%=song.name%></h3>
+                    <h5><i><%=song.album.name%></i></h5>
+                    <small><%=song.artists[0].name%></small>
+                    <br>
+                  </div>
+                </div>
+                <a href="<%=song.external_urls.spotify%>"
+                class="stretched-link" target="_blank"></a>
+            </div>
+        <br>
+        <% } %>
+        <br>
+    </div>
+
+
+</body>
+</html>
+<%- include('partials/footer.ejs')  %>

@@ -1,0 +1,39 @@
+<%- include('partials/header.ejs')  %>
+<div class="card p-3 m-3">
+  <h3 class="card p-3 m-3 border-top-0 border-left-0 border-right-0">Edit Post</h3>
+
+  <div class="card border-0 p-3 m-3">
+    <form method="POST" action="/forum/post/edit">
+        <!-- INPUT FOR TITLE -->
+        <textarea class="form-control"id="title" name="title" rows="1" placeholder="Write your thoughts down! " style="resize: none;":><%= rows.title %></textarea><br>
+
+
+        <!-- INPUT FOR DESCRIPTION -->
+        <textarea class="form-control"id="description" name="description" rows="10" placeholder="Write your thoughts down! " style="resize: none;":><%= rows.description %></textarea><br>
+
+        <!-- INPUT FOR TAGS -->
+        <select name="tag" id="tag" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+        <option selected>Select a tag</option>
+          <option value="Hip-Hop">Hip-Hop</option>
+          <option value="Pop">Pop</option>
+          <option value="Indie">Indie</option>
+          <option value="Rock">Rock</option>
+          <option value="Classic">Classic</option>
+          <option value="Country">Country</option>
+          <option value="Random">Random</option>
+        </select>
+        <!-- POST BUTTON -->
+        <input type="hidden" name="postID" value="<%=rows.postID%>">
+        <button class="btn btn-lg btn-block btn-outline-secondary">Edit Post</button>
+    </form>
+    <!-- SUCCESS/ERROR MESSAGE -->
+    <% if (typeof message != "undefined") { %>
+       <small><%= message %></small>
+    <% } %>
+  </div>
+</div>
+   
+</body>
+</html>
+
+<%- include('partials/footer.ejs')  %>

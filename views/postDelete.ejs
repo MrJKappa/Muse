@@ -1,0 +1,26 @@
+<%- include('partials/header.ejs')  %>
+
+    <form method="POST" action="/forum/post/delete">
+
+        <!-- TITLE-->
+        <h3 class="form-control" id="title" name="title" rows="1">Your deleting: <%= rows.title %></h3><br>
+
+
+        <!-- DESCRIPTION -->
+        <h3 class="form-control"id="description" name="description" rows="10">Post Description: <%= rows.description %></h3><br>
+
+        <!-- DELETE BUTTON -->
+        <input type="hidden" name="postID" value="<%=rows.postID%>">
+        <button class="btn btn-lg btn-block btn-outline-secondary">Delete Post</button>
+    </form>
+    <!-- SUCCESS/ERROR MESSAGE -->
+    <% if (typeof message != "undefined") { %>
+       <small><%= message %></small>
+    <% } %>
+  </div>
+</div>
+   
+</body>
+</html>
+
+<%- include('partials/footer.ejs')  %>

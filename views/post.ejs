@@ -1,0 +1,30 @@
+<%- include('partials/header.ejs')  %>
+<div class="card p-3 m-3">
+    <h1> <%=post[0].title%> </h1> 
+    <p><strong>OP:  </strong><%=post[0].username%></p><br>
+    <p><strong>Created:  </strong><%=post[0].dateISO%></p><br>
+    <p><%=post[0].description%></p><br>
+
+</div>
+
+<form method="POST" action="/forum/post">
+    <div class="card m-3">
+        <textarea class="form-control " name="description" placeholder="What are your thoughts?" rows="5"></textarea>
+        <input type="hidden" name="postID" value="<%=post[0].postID%>">
+        <button class="btn btn-lg btn-block btn-outline-secondary">Reply</button>
+    </div>
+</form>
+
+<% for (i of replies) { %>
+    <div class="card p-3 m-3 text-center">
+      <div class="card-body">
+        <p class="card-text"><%= i.description%></p>
+        <p class="card-text"><strong>By: </strong><%= i.username%></p>
+        <p class="card-text"><strong> Date: </strong><%= i.dateISO%></p>
+      </div>
+    </div>
+ <% } %>
+
+</body>
+</html>
+<%- include('partials/footer.ejs')  %>

@@ -358,10 +358,10 @@ function dbConnection(){
    const pool  = mysql.createPool({
 
       connectionLimit: 10,
-      host: "wcwimj6zu5aaddlj.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-      user: "l9hpw8gcp9hcc5w0",
-      password: "lzdk10vbcm5p8p03",
-      database: "kclk06g46mxacuml"
+      host: "HOST",
+      user: "USER",
+      password: "PASSWORD",
+      database: "DATABASE"
    }); 
 
    return pool;
